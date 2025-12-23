@@ -1,0 +1,215 @@
+:root {
+    --ide-bg: #05000a;       /* Very dark background */
+    --ide-panel: #1e1e1e;    /* Panel background */
+    --ide-border: #2d2d2d;   /* Subtle borders */
+    --ide-accent: #4f46e5;   /* Primary Brand Color */
+    --ide-text: #e5e7eb;     /* Main text */
+    --ide-muted: #9ca3af;    /* Muted text */
+    --ide-success: #22c55e;  /* Run Button Green */
+    --ide-hover: #2a2a2a;    /* Hover states */
+    --font-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--ide-bg);
+    color: var(--ide-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- Main Layout --- */
+.ide-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--ide-bg);
+    overflow: hidden;
+}
+
+/* --- Header --- */
+.ide-header {
+    height: 60px;
+    background-color: var(--ide-bg);
+    border-bottom: 1px solid var(--ide-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--ide-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.room-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--ide-panel);
+    border: 1px solid var(--ide-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--ide-muted);
+    font-family: var(--font-mono);
+}
+
+.username-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--ide-panel);
+    border: 1px solid var(--ide-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--ide-muted);
+    font-family: var(--font-mono);
+    font-weight: bold;
+}
+
+.run-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--ide-success); /* Green Play Button */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.run-btn:hover {
+    background-color: #16a34a; /* Darker Green */
+    transform: translateY(-1px);
+}
+
+.run-btn:active {
+    transform: translateY(0);
+}
+
+/* --- Workspace (Editor + Terminal) --- */
+.ide-workspace {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Editor Area */
+.editor-wrapper {
+    flex-grow: 1; /* Takes up remaining space */
+    position: relative;
+    border-bottom: 1px solid var(--ide-border);
+}
+
+/* Terminal Area */
+.terminal-wrapper {
+    height: 35%; /* Fixed height for terminal */
+    background-color: var(--ide-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header {
+    height: 32px;
+    background-color: var(--ide-panel);
+    border-bottom: 1px solid var(--ide-border);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ide-muted);
+    text-transform: uppercase;
+    gap: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.terminal-body {
+    flex-grow: 1;
+    padding: 8px; /* Slight padding for the terminal text */
+    background-color: #000; /* xterm background matches */
+    overflow: hidden;
+}
+
+/* --- Modal Overlay --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* Dark dimmed background */
+    backdrop-filter: blur(4px); /* Blur effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-card {
+    background-color: var(--ide-panel);
+    border: 1px solid var(--ide-border);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ide-text);
+    margin: 0;
+    text-align: center;
+}
+
+.modal-input {
+    background-color: var(--ide-bg);
+    border: 1px solid var(--ide-border);
+    color: var(--ide-text);
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-input:focus {
+    border-color: var(--ide-accent);
+}
+
+.modal-btn {
+    background-color: var(--ide-accent);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.modal-btn:hover {
+    background-color: #4338ca;
+}
